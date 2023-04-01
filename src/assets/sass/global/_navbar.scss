@@ -1,0 +1,32 @@
+
+
+
+nav {
+  background-color: #ffffff;
+}
+
+.navbar {
+  .brand{
+    color:rgb(0, 0, 0);
+    font-weight: bold;
+    font-size:1.3rem;
+    text-decoration: none;
+  }
+  .navbar-nav{
+    
+    a{
+      text-decoration: none;
+    }
+    .nav-link{
+      color: rgb(0, 0, 0);
+    }
+    a.router-link-exact-active{
+      color: #fac532 !important;
+      font-weight: bold;
+    }
+    
+  }
+  
+}
+
+
