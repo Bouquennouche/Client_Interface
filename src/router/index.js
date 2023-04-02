@@ -2,10 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import About from '@/views/AboutView.vue'
-import Help from '@/views/Help.vue'
-import Blog from '@/views/Blog.vue'
 import ReservationView from '@/views/ReservationView.vue'
 import Test from '@/views/Test.vue'
+import ServicesVue from '@/views/ServicesVue.vue'
+
+
 
 Vue.use(VueRouter)
 
@@ -21,9 +22,9 @@ const routes = [
     component: About
   },
   {
-    path: '/help',
-    name: 'help',
-    component: Help
+    path: '/services',
+    name: 'services',
+    component: ServicesVue,
   },
   {
     path: '/blog',

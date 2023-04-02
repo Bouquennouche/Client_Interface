@@ -54,6 +54,6 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     margin-top: -100px;
-    min-height: 100vh !important;
+    min-height:90vh !important;
   }
 </style>

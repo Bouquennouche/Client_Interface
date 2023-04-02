@@ -21,7 +21,7 @@
               <a class="nav-link me-4" href="#">Accueil</a>
             </li>
           </router-link>
-          <router-link to="/help" tag="a" exact>
+          <router-link to="/services" tag="a" exact>
             <li class="nav-item">
               <a class="nav-link me-4" href="#">Services</a>
             </li>
