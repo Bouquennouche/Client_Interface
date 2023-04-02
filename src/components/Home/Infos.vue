@@ -1,5 +1,5 @@
 <template>
-  <section id="featured-services" class="featured-services py-5 my-5">
+  <section id="featured-services" class="featured-services my-5">
     <div class="container" data-aos="fade-up">
       <div class="row">
         <div v-for="(item, index) in items" :key="index" :class="item.classes">
@@ -30,28 +30,28 @@ export default {
     return {
       items: [
         {
-          classes: "col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0",
+          classes: "hi col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0",
           icon: "bi bi-clock",
           title: "Heures de travails",
           descriptions: ["Lundi - Vendredi", "9:00AM - 05:00PM"],
           delay: 100,
         },
         {
-          classes: "col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0",
+          classes: "hi col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0",
           icon: "bi bi-telephone",
           title: "Appelez nous",
           descriptions: ["+212 567684812", "+212 556768481"],
           delay: 200,
         },
         {
-          classes: "col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0",
+          classes: "hi col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0",
           icon: "bi bi-geo-alt",
           title: "Localisation",
           descriptions: ["Apt 19 Avenue Al Amal,", "Sale, Tabrikt"],
           delay: 300,
         },
         {
-          classes: "col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0",
+          classes: "hi col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0",
           icon: "bi bi-envelope-at",
           title: "E-mail",
           descriptions: ["info@example.com", "contact@example.com"],
@@ -88,7 +88,7 @@ export default {
 }
 
 .featured-services .icon-box:hover::before {
-  background: #3fbbc0;
+  background: #308bc0;
   top: 0;
   border-radius: 0px;
 }
@@ -100,7 +100,7 @@ export default {
 .featured-services .icon i {
   font-size: 48px;
   line-height: 1;
-  color: #3fbbc0;
+  color: #3f82c0;
   transition: all 0.3s ease-in-out;
 }
 
@@ -127,5 +127,9 @@ export default {
 
 .featured-services .icon-box:hover .icon i {
   color: #fff;
+}
+
+.hi{
+  margin-top: -100px;
 }
 </style>
