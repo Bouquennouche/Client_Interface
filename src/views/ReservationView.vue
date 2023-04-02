@@ -17,7 +17,7 @@
             <label for="inputAddress" class="form-label"
               >Numero de telephone</label
             >
-            <input type="number" class="form-control" v-model="num_tel" />
+            <input type="tel" class="form-control" v-model="num_tel" />
           </div>
           <div class="col-6">
             <label class="form-label">Genre</label>
@@ -37,7 +37,8 @@
           <div class="col-12">
             <label for="inputAddress" class="form-label">Service</label>
             <select
-              class="form-control"
+              class="form-select"
+              aria-label="Default select example"
               v-model="serviceid"
               placeholder="Selectionner une service"
             >
