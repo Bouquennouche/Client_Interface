@@ -144,17 +144,30 @@ export default {
         temp_dep: this.horaire,
         id_ser: this.serviceid,
       });
+      this.nom = "";
+      this.prenom = "";
+      this.genre = "";
+      this.date = "";
+      this.num_tel = "";
+      this.date_rsv = "";
+      this.horaire = "";
+      this.serviceid = "";
+      this.getHoraireTravail();
     },
     async getHoraireTravail() {
-      try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/heures`, {
-          params: {
-            date: this.date_rsv,
-          },
-        });
-        this.temp = response.data.heures;
-      } catch (error) {
-        console.log(error);
+      if (this.date_rsv != "") {
+        try {
+          const response = await axios.get(`http://127.0.0.1:8000/api/heures`, {
+            params: {
+              date: this.date_rsv,
+            },
+          });
+          this.temp = response.data.heures;
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        this.temp = [];
       }
     },
     checkIfInArray(item) {
