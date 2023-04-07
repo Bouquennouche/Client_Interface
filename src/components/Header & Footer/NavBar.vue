@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg sticky-top py-3 bg-light">
+  <nav class="navbar navbar-expand-lg sticky-top py-3 bg-transparent">
     <div class="container">
       <a class="brand me-5" href="#">Logo</a>
       <button
@@ -53,6 +53,7 @@ export default {
 
 <style lang="scss" scoped>
   .navbar{
-    background-color: rgb(237, 247, 255) !important; 
+    background: transparent !important; 
   }
+  
 </style>

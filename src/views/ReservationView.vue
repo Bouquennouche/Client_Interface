@@ -7,11 +7,11 @@
           <h1>Reservation</h1>
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Nom</label>
-            <input type="text" class="form-control" v-model="nom" />
+            <input type="text" class="form-control" id="lastName" v-model="nom" @blur="validateNom"/>
           </div>
           <div class="col">
             <label for="inputPassword4" class="form-label">Prenom</label>
-            <input type="text" class="form-control" v-model="prenom" />
+            <input type="text" class="form-control" id="firstName" v-model="prenom" />
           </div>
           <div class="col-12">
             <label for="inputAddress" class="form-label"
@@ -178,6 +178,24 @@ export default {
         ? { color: "white", background: "#de4452" }
         : {};
     },
+    validateNom(){
+          const regex =  /^[a-zA-Z]+$/
+          const userInput = document.querySelector('#lastName')
+          let isTrue = null
+          console.log(userInput)
+          if(regex.test(this.nom)){
+              userInput.classList.remove('is-invalid')
+              isTrue = true
+              if(isTrue){
+                userInput.classList.add('is-valid')
+              }
+          }
+          else{
+              userInput.classList.add('is-invalid')
+              isTrue = false
+          }
+          
+      },
   },
 };
 </script>

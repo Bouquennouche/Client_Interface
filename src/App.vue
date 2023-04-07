@@ -21,6 +21,9 @@ export default {
 
 <style scoped>
   #app{
-    background-color: rgb(237, 247, 255) ; 
+    background: #076585;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #fff, #87bcce);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #fff, #99d2e5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   }
 </style>
