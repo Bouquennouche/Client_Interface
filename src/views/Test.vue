@@ -1,6 +1,6 @@
 <template>
   <div class="row w-75 bg-light shadow m-auto mt-5 rounded">
-    <div class="col-5">
+    <div class="col-6">
       <div class="p-5">
         <div class="row calendar container m-auto">
           <h4 class="text-center">Selectionnez une date</h4>
@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <div class="col-7 p-5">
+    <div class="col-6 p-5">
       <h1 v-if="!selectedDate">{{ formatDate(new Date()) }}</h1>
       <h1 v-else>{{ formatDate(selectedDate) }}</h1>
       <form>
