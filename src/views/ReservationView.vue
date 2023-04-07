@@ -11,11 +11,22 @@
           </div>
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Nom</label>
-            <input type="text" class="form-control" id="lastName" v-model="nom" @blur="validateNom"/>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              v-model="nom"
+              @blur="validateNom"
+            />
           </div>
           <div class="col-md-6">
             <label for="inputPassword4" class="form-label">Prenom</label>
-            <input type="text" class="form-control" id="firstName" v-model="prenom" />
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              v-model="prenom"
+            />
           </div>
           <div class="col-12">
             <label for="inputAddress" class="form-label"
@@ -140,17 +151,20 @@ export default {
     },
     async addrsv() {
       console.log(this.cin);
-      const response = await axios.post(`http://127.0.0.1:8000/api/rendez_vous`, {
-        nom: this.nom,
-        cin : this.cin,
-        prenom: this.prenom,
-        genre: this.genre,
-        date_naissance: this.date,
-        num_tel: this.num_tel,
-        date_rdv: this.date_rsv,
-        temp_dep: this.horaire,
-        id_ser: this.serviceid,
-      });
+      const response = await axios.post(
+        `http://127.0.0.1:8000/api/rendez_vous`,
+        {
+          nom: this.nom,
+          cin: this.cin,
+          prenom: this.prenom,
+          genre: this.genre,
+          date_naissance: this.date,
+          num_tel: this.num_tel,
+          date_rdv: this.date_rsv,
+          temp_dep: this.horaire,
+          id_ser: this.serviceid,
+        }
+      );
       this.cin = "";
       this.nom = "";
       this.prenom = "";
@@ -161,7 +175,7 @@ export default {
       this.horaire = "";
       this.serviceid = "";
       this.getHoraireTravail();
-      console.log(response)
+      console.log(response);
     },
     async getHoraireTravail() {
       if (this.date_rsv != "") {
@@ -187,24 +201,22 @@ export default {
         ? { color: "white", background: "#de4452" }
         : {};
     },
-    validateNom(){
-          const regex =  /^[a-zA-Z]+$/
-          const userInput = document.querySelector('#lastName')
-          let isTrue = null
-          console.log(userInput)
-          if(regex.test(this.nom)){
-              userInput.classList.remove('is-invalid')
-              isTrue = true
-              if(isTrue){
-                userInput.classList.add('is-valid')
-              }
-          }
-          else{
-              userInput.classList.add('is-invalid')
-              isTrue = false
-          }
-          
-      },
+    validateNom() {
+      const regex = /^[a-zA-Z]+$/;
+      const userInput = document.querySelector("#lastName");
+      let isTrue = null;
+      console.log(userInput);
+      if (regex.test(this.nom)) {
+        userInput.classList.remove("is-invalid");
+        isTrue = true;
+        if (isTrue) {
+          userInput.classList.add("is-valid");
+        }
+      } else {
+        userInput.classList.add("is-invalid");
+        isTrue = false;
+      }
+    },
   },
 };
 </script>
