@@ -5,11 +5,15 @@
       <div class="col py-5">
         <div class="row g-3 px-5">
           <h1>Reservation</h1>
+          <div class="col-12">
+            <label for="inputEmail4" class="form-label">CIN</label>
+            <input type="text" class="form-control" v-model="cin" />
+          </div>
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Nom</label>
             <input type="text" class="form-control" id="lastName" v-model="nom" @blur="validateNom"/>
           </div>
-          <div class="col">
+          <div class="col-md-6">
             <label for="inputPassword4" class="form-label">Prenom</label>
             <input type="text" class="form-control" id="firstName" v-model="prenom" />
           </div>
@@ -110,6 +114,7 @@ export default {
       ],
       temp: [],
       services: [],
+      cin: "",
       horaire: "",
       date_rsv: "",
       nom: "",
@@ -134,8 +139,10 @@ export default {
       }
     },
     async addrsv() {
-      await axios.post(`http://127.0.0.1:8000/api/rendez_vous`, {
+      console.log(this.cin);
+      const response = await axios.post(`http://127.0.0.1:8000/api/rendez_vous`, {
         nom: this.nom,
+        cin : this.cin,
         prenom: this.prenom,
         genre: this.genre,
         date_naissance: this.date,
@@ -144,6 +151,7 @@ export default {
         temp_dep: this.horaire,
         id_ser: this.serviceid,
       });
+      this.cin = "";
       this.nom = "";
       this.prenom = "";
       this.genre = "";
@@ -153,6 +161,7 @@ export default {
       this.horaire = "";
       this.serviceid = "";
       this.getHoraireTravail();
+      console.log(response)
     },
     async getHoraireTravail() {
       if (this.date_rsv != "") {
