@@ -52,17 +52,6 @@
             />
             <div class="form-text">Entrer votre CIN</div>
           </div>
-          <div class="col-sm mb-3">
-            <label class="form-label">Votre numero de telephone</label>
-            <input
-              type="text"
-              v-model="num_tel"
-              class="form-control"
-              required
-              aria-describedby="emailHelp"
-            />
-            <div class="form-text">Entrer votre numero de telephone</div>
-          </div>
         </div>
         <button type="button" @click="verifier()" class="btn btn-primary">
           Verifier
@@ -87,6 +76,16 @@
             class="form-control"
             id="firstName"
             v-model="prenom"
+          />
+        </div>
+        <div class="col-sm mb-3" v-id="!exist">
+          <label class="form-label">Numero de Telephone</label>
+          <input
+            type="text"
+            v-model="num_tel"
+            class="form-control"
+            required
+            aria-describedby="emailHelp"
           />
         </div>
         <div class="col-6" v-if="!exist">
@@ -218,7 +217,7 @@ export default {
       this.horaire = hour;
     },
     async verifier() {
-      if (this.cin != "" && this.num_tel != "") {
+      if (this.cin != "") {
         try {
           const response = await axios.get("http://127.0.0.1:8000/api/exists", {
             params: {
@@ -230,6 +229,7 @@ export default {
             this.nom = response.data.patient.nom;
             this.prenom = response.data.patient.prenom;
             this.date = response.data.patient.date_naissance;
+            this.num_tel = response.data.patient.num_tel;
             this.genre = response.data.patient.genre;
             this.exist = true;
           } else {
