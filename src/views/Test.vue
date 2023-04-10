@@ -1,42 +1,48 @@
 <template>
   <div class="row w-75 bg-light shadow m-auto mt-5 rounded">
     <div class="col-6">
-      <div class="p-5">
-        <div class="row calendar container m-auto">
-          <h4 class="text-center">Selectionnez une date</h4>
-          <vc-calendar
-            :attributes="attributes"
-            is-expanded
-            is-dark
-            color="red"
-            @dayclick="onDayClick"
-          />
-        </div>
-        <div class="row mt-3 m-auto container">
-          <h4 class="text-center">Selectionnez l'horaire</h4>
-          <div
-            class="horaires bg-dark text-light row row-cols-1 row-cols-md-4 g-2 m-auto py-3 px-2 rounded"
-          >
+      <div class="content">
+        <div class="p-5">
+          <div class="row calendar container m-auto">
+            <h4 class="text-center">Selectionnez une date</h4>
+
+            <vc-calendar
+              class="my-calendar"
+              :attributes="attributes"
+              title-position="left"
+              expanded
+              color="blue"
+              :min-date="new Date()"
+              :disabled-dates="disabledDates"
+              @dayclick="onDayClick"
+            />
+          </div>
+          <div class="row mt-3 m-auto container">
+            <h4 class="text-center">Selectionnez l'horaire</h4>
             <div
-              class="col text-dark text-center"
-              v-for="(hour, index) in horaireTravail"
-              :key="index"
+              class="horaires bg-light border text-light row row-cols-1 row-cols-md-4 g-2 m-auto py-3 px-2 rounded-3"
             >
-              <div class=""></div>
-              <button
-                type="button"
-                class="btn btn-warning hour px-3 py-2 rounded"
-                :disabled="hourClicked.includes(index) || temp.includes(hour)"
-                @click="disableHour(index, hour)"
+              <div
+                class="col text-dark text-center"
+                v-for="(hour, index) in horaireTravail"
+                :key="index"
               >
-                {{ hour }}
-              </button>
+                <div class=""></div>
+                <button
+                  type="button"
+                  class="btn btn-secondary hour px-3 py-2 rounded"
+                  :disabled="hourClicked.includes(index) || temp.includes(hour)"
+                  @click="disableHour(index, hour)"
+                >
+                  {{ hour }}
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-6 p-5">
+    <div class="col-6 p-5 border border-start rounded-start rounder-3">
       <h1 v-if="!selectedDate">{{ formatDate(new Date()) }}</h1>
       <h1 v-else>{{ formatDate(selectedDate) }}</h1>
       <form v-if="show">
@@ -78,7 +84,7 @@
             v-model="prenom"
           />
         </div>
-        <div class="col-sm mb-3" v-id="!exist">
+        <div class="col-sm mb-3" v-if="!exist">
           <label class="form-label">Numero de Telephone</label>
           <input
             type="text"
@@ -167,6 +173,49 @@ export default {
       horaire: "",
       num_tel: "",
       show: true,
+      disabledDates: [
+        {
+          start: new Date(2023, 0, 1),
+          end: new Date(2023, 0, 1),
+        },
+        {
+          start: new Date(2023, 4, 1),
+          end: new Date(2023, 4, 1),
+        },
+        {
+          start: new Date(2023, 4, 24),
+          end: new Date(2023, 4, 24),
+        },
+        {
+          start: new Date(2023, 6, 30),
+          end: new Date(2023, 6, 30),
+        },
+        {
+          start: new Date(2023, 7, 14),
+          end: new Date(2023, 7, 14),
+        },
+        {
+          start: new Date(2023, 7, 20),
+          end: new Date(2023, 7, 20),
+        },
+        {
+          start: new Date(2023, 7, 21),
+          end: new Date(2023, 7, 21),
+        },
+        {
+          start: new Date(2023, 9, 13),
+          end: new Date(2023, 9, 13),
+        },
+        {
+          start: new Date(2023, 10, 1),
+          end: new Date(2023, 10, 1),
+        },
+        {
+          start: new Date(2023, 10, 6),
+          end: new Date(2023, 10, 6),
+        },
+        { weekdays: [1, 7] },
+      ],
     };
   },
   computed: {
@@ -201,13 +250,15 @@ export default {
       }
     },
     onDayClick(day) {
-      this.days = [
-        {
-          id: day.id,
-          date: day.date,
-        },
-      ];
-      this.getHoraireTravail();
+      if (!day.isDisabled) {
+        this.days = [
+          {
+            id: day.id,
+            date: day.date,
+          },
+        ];
+        this.getHoraireTravail();
+      }
     },
     formatDate(dateString) {
       return moment(dateString).format("D MMMM YYYY");
@@ -313,5 +364,56 @@ export default {
 .hour {
   font-size: 12px;
   font-weight: bold;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.w-75 {
+  width: 75% !important;
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.m-auto {
+  margin: auto !important;
+}
+
+.mt-5 {
+  margin-top: 3rem !important;
+}
+
+.rounded {
+  border-radius: 0.25rem !important;
+}
+
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.p-5 {
+  padding: 3rem !important;
+}
+
+.calendar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.my-calendar {
+  background-color: #f8f9fa;
 }
 </style>
