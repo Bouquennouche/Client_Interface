@@ -1,50 +1,39 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import About from '@/views/AboutView.vue'
-import ReservationView from '@/views/ReservationView.vue'
-import Test from '@/views/Test.vue'
-import ServicesVue from '@/views/ServicesVue.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import HomeView from "../views/HomeView.vue";
+import About from "@/views/AboutView.vue";
+import ReservationView from "@/views/ReservationView.vue";
+import ServicesVue from "@/views/ServicesVue.vue";
 
-
-
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    name: "home",
+    component: HomeView,
   },
   {
-    path: '/about',
-    name: 'about',
-    component: About
+    path: "/about",
+    name: "about",
+    component: About,
   },
   {
-    path: '/services',
-    name: 'services',
+    path: "/services",
+    name: "services",
     component: ServicesVue,
   },
   {
-    path: '/blog',
-    name: 'blog',
-    component: Test,
+    path: "/reservation",
+    name: "reservatio",
+    component: ReservationView,
   },
-  {
-    path: '/reservation',
-    name: 'reservatio',
-    component: ReservationView
-  }
-]
-
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
-
-
+export default router;
