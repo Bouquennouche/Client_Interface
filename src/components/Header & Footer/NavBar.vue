@@ -1,7 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-lg sticky-top py-3 bg-transparent">
+  <nav class="navbar navbar-expand-lg sticky-top py-3 ">
     <div class="container">
-      <a class="brand me-5" href="#">Logo</a>
+      <a class="navbar-brand" href="#">
+      <img src="@/assets/imgs/tooth.png" alt="Bootstrap" width="25" height="25"><a class="brand align-middle ms-2 me-5" href="/">uSmile</a>
+      </a>
+      
       <button
         class="navbar-toggler"
         style="color: white"
@@ -52,8 +55,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .navbar{
-    background: transparent !important; 
-  }
-  
 </style>

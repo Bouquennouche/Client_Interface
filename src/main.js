@@ -7,7 +7,9 @@ import 'normalize.css';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
+import SweetModal from 'sweet-modal-vue/src/plugin.js'
 
+Vue.use(SweetModal)
 
 Vue.config.productionTip = false;
 

@@ -4,21 +4,22 @@
       <div class="content">
         <div class="p-5">
           <div class="row calendar container m-auto">
-            <h4 class="text-center">Selectionnez une date</h4>
+            <h2>Calendrier</h2>
+            <h5 class="text-center">Selectionnez une date</h5>
 
             <vc-calendar
               class="my-calendar"
               :attributes="attributes"
               title-position="left"
               expanded
-              color="blue"
+              color="green"
               :min-date="new Date()"
               :disabled-dates="disabledDates"
               @dayclick="onDayClick"
             />
           </div>
           <div class="row mt-3 m-auto container">
-            <h4 class="text-center">Selectionnez l'horaire</h4>
+            <h5 class="text-center mt-3">Selectionnez l'horaire</h5>
             <div
               class="horaires bg-light border text-light row row-cols-1 row-cols-md-4 g-2 m-auto py-3 px-2 rounded-3"
             >
@@ -30,7 +31,7 @@
                 <div class=""></div>
                 <button
                   type="button"
-                  class="btn btn-secondary hour px-3 py-2 rounded"
+                  class="btn btn-success hour px-3 py-2 rounded"
                   :disabled="hourClicked.includes(index) || temp.includes(hour)"
                   @click="disableHour(index, hour)"
                 >
@@ -42,26 +43,34 @@
         </div>
       </div>
     </div>
-    <div class="col-6 p-5 border border-start rounded-start rounder-3">
-      <h1 v-if="!selectedDate">{{ formatDate(new Date()) }}</h1>
-      <h1 v-else>{{ formatDate(selectedDate) }}</h1>
+    <div class="col-6 p-5 reserv-infos text-light">
+      <h2>Infos de reservation</h2>
       <form v-if="show">
         <div class="row">
-          <div class="col-sm mb-3">
+          <div class="col-sm mb-3 ms-1">
             <label class="form-label">Votre CIN</label>
             <input
               type="text"
               v-model="cin"
               class="form-control"
               required
-              aria-describedby="emailHelp"
+              aria-describedby="emailHelp"         
+              placeholder="Entre votre CIN"
             />
-            <div class="form-text">Entrer votre CIN</div>
           </div>
         </div>
-        <button type="button" @click="verifier()" class="btn btn-primary">
+        <button type="button" @click="verifier()" class="btn btn-success px-3">
           Verifier
         </button>
+        <div class="mt-4">
+              <h3 class="mb-3">Pour prendre un rendez-vous, vous devez :</h3>
+              <ul class="consigne">
+                <li>Choisir la date et l'heure qui vous conviennent dans la section "Calendrier".</li>
+                <li>Entrer votre CIN et cliquer sur "Confirmer".</li>
+                <li>Si le CIN n'existe pas, vous devez remplir un formulaire contenant vos informations personnelles.</li>
+                <li>Sinon, il suffit de choisir un service, et confirmer votre réservation.</li>
+              </ul>
+        </div>
       </form>
       <br />
       <div class="row" v-if="!show">
@@ -127,6 +136,26 @@
         </div>
       </div>
     </div>
+
+    <!-- modals -->
+    <div class="modals">
+      <div class="suceess-modal">
+          <sweet-modal icon="success" ref="modal1" width="30vw">
+            <h2>Message de succés</h2>
+            Les informations sont envoyées avec succés
+          </sweet-modal>
+      </div>
+      <div class="error-modal">
+        <div class="suceess-modal">
+          <sweet-modal icon="error" ref="modal2" width="30vw">
+            <h2>Erreur</h2>
+            Veuillez remplir tous les informations <br>
+            Ou Entrer des informations valides   
+          </sweet-modal>
+      </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -326,6 +355,38 @@ export default {
         isTrue = false;
       }
     },
+    validateNom() {
+      const regex = /^[a-zA-Z]+$/;
+      const userInput = document.querySelector("#lastName");
+      let isTrue = null;
+      console.log(userInput);
+      if (regex.test(this.nom)) {
+        userInput.classList.remove("is-invalid");
+        isTrue = true;
+        if (isTrue) {
+          userInput.classList.add("is-valid");
+        }
+      } else {
+        userInput.classList.add("is-invalid");
+        isTrue = false;
+      }
+    },
+    validateNom() {
+      const regex = /^[a-zA-Z]+$/;
+      const userInput = document.querySelector("#lastName");
+      let isTrue = null;
+      console.log(userInput);
+      if (regex.test(this.nom)) {
+        userInput.classList.remove("is-invalid");
+        isTrue = true;
+        if (isTrue) {
+          userInput.classList.add("is-valid");
+        }
+      } else {
+        userInput.classList.add("is-invalid");
+        isTrue = false;
+      }
+    },
     async addrsv() {
       console.log(this.horaire);
       const response = await axios.post(
@@ -415,5 +476,16 @@ export default {
 
 .my-calendar {
   background-color: #f8f9fa;
+}
+
+.reserv-infos{
+  background: #00bf8f;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #0e8056, #00bf8f);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #074b3b, #00bf8f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.consigne{
+  li{
+      margin-bottom: 10px;
+  }
 }
 </style>
